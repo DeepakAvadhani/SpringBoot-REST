@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.service.UserService;
 import com.example.demo.entity.User;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,7 +15,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user){
+    public User createUser(@Valid @RequestBody User user){
         return userService.createUser(user);
     }
 

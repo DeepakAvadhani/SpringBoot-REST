@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
@@ -20,9 +21,12 @@ public class User {
     private String name;
 
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "Email cannot be empty")
     private String email;
 
+    @NotBlank(message = "Department cannot be empty")
     private String department;
 
+    @NotBlank(message = "Salary cannot be empty")
     private Double salary;
 }
