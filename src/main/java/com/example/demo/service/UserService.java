@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.User;
+import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,11 @@ public class UserService {
     }
 
     public User getUserById(Long id){
-        return userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
+        return userRepository.findById(id).orElseThrow(()->new UserNotFoundException("User Not Found with id: "+id));
     }
 
     public User updateUser(Long id, User user){
-        User existingUser  = userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
+        User existingUser  = userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found with id"+id));
 
         existingUser.setName(user.getName());
         existingUser.setEmail(user.getEmail());
