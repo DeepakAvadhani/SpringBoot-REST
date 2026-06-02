@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.CreateUserRequest;
+import com.example.demo.dto.UpdateUserRequest;
 import com.example.demo.entity.User;
 import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.repository.UserRepository;
@@ -17,7 +18,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser(@Valid CreateUserRequest user){
+    public User createUser(@Valid CreateUserRequest createUserRequest){
+        User user = new User();
+        user.setEmail(createUserRequest.getEmail());
+        user.setName(createUserRequest.getName());
+        user.setSalary(createUserRequest.getSalary());
         return userRepository.save(user);
     }
 
@@ -29,11 +34,12 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(()->new UserNotFoundException("User Not Found with id: "+id));
     }
 
-    public User updateUser(Long id, User user){
+    public User updateUser(Long id, UpdateUserRequest updateUserRequest){
         User existingUser  = userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found with id"+id));
 
-        existingUser.setName(user.getName());
-        existingUser.setEmail(user.getEmail());
+        existingUser.setName(updateUserRequest.getName());
+        existingUser.setEmail(updateUserRequest.getEmail());
+        existingUser.setSalary(updateUserRequest.getSalary());
         return userRepository.save(existingUser);
     }
 

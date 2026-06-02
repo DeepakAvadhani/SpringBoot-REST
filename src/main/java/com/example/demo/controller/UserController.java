@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.UpdateUserRequest;
 import com.example.demo.service.UserService;
 import com.example.demo.entity.User;
 import jakarta.validation.Valid;
@@ -31,8 +32,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id,@RequestBody User user){
-        return userService.updateUser(id,user);
+    public User updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest updateUserRequest){
+        return userService.updateUser(id,updateUserRequest);
     }
 
     @DeleteMapping("/{id}")
