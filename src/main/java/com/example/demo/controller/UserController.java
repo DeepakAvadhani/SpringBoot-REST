@@ -4,6 +4,7 @@ import com.example.demo.service.UserService;
 import com.example.demo.entity.User;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import com.example.demo.dto.CreateUserRequest;
 
 @RestController
 @RequestMapping("/users")
@@ -15,8 +16,8 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@Valid @RequestBody User user){
-        return userService.createUser(user);
+    public User createUser(@Valid @RequestBody CreateUserRequest createUserRequest){
+        return userService.createUser(createUserRequest);
     }
 
     @GetMapping

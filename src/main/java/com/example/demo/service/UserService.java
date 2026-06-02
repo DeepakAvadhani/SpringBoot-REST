@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.CreateUserRequest;
 import com.example.demo.entity.User;
 import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +17,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser(User user){
+    public User createUser(@Valid CreateUserRequest user){
         return userRepository.save(user);
     }
 

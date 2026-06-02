@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -21,6 +22,7 @@ public class User {
     private String name;
 
     @Column(nullable = false, unique = true)
+    @Email(message = "Invalid Email")
     @NotBlank(message = "Email cannot be empty")
     private String email;
 
